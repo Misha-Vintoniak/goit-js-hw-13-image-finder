@@ -20,7 +20,7 @@ function onSearch(e) {
     return alert('Введіть пошукові дані...');
   }
   e.preventDefault();
-
+  onClearBtn();
   newfetchImages.query = input.value;
   newfetchImages.resetPage();
   newfetchImages.fetchCard().then(images => onRenderList(images));
@@ -38,7 +38,7 @@ const onEntry = entries => {
     if (entry.isIntersecting && newfetchImages.query !== '') {
       newfetchImages.fetchCard().then(images => {
         onRenderList(images);
-        newsApiService.incrementPage();
+        newfetchImages.incrementPage();
       });
     }
   });
